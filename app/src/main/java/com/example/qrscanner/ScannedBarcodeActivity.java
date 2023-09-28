@@ -53,9 +53,11 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (intentData.length() > 0) {
                     if (isEmail)
-                        startActivity(new Intent(ScannedBarcodeActivity.this, EmailActivity.class).putExtra("email_address", intentData));
+                        Toast.makeText(ScannedBarcodeActivity.this, "This is Phone Nummber", Toast.LENGTH_LONG).show();
+                        //startActivity(new Intent(ScannedBarcodeActivity.this, EmailActivity.class).putExtra("email_address", intentData));
                     else {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
+                        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
+                        Toast.makeText(ScannedBarcodeActivity.this, "This is not a Phone Nummber", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -116,9 +118,9 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            if (barcodes.valueAt(0).email != null) {
+                            if (barcodes.valueAt(0).driverLicense != null) {
                                 txtBarcodeValue.removeCallbacks(null);
-                                intentData = barcodes.valueAt(0).email.address;
+                                intentData = barcodes.valueAt(0).driverLicense.firstName;
                                 txtBarcodeValue.setText(intentData);
                                 isEmail = true;
                                 btnAction.setText("ADD CONTENT TO THE MAIL");
